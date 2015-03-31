@@ -11,3 +11,6 @@ perros(pastor_aleman, [juli, esteban, pancho]).
 perros(san_bernardo, [master, rigan, mujamad]).
 perros(french_poodle, [figaro, piojo, ramiro]).
 
+pastor_aleman(P):-perros(pastor_aleman, L), pertenece(P,L).
+
+:-perro(X).
