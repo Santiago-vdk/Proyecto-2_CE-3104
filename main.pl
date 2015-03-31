@@ -1,4 +1,5 @@
 :- style_check(-singleton).
+:- use_module(library(clpfd)).
 
 
 :- L=[perro,gato,raton,queso].

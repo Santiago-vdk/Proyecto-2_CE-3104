@@ -13,3 +13,5 @@ perros(french_poodle, [figaro, piojo, ramiro]).
 
 size([],0).
 size([H|T],N):-size(T,N1),N is N1+1.
+
+rotar90(L,R):-transpose(L,R1),reverse(R1,R).
