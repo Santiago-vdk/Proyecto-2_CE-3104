@@ -16,3 +16,6 @@ size([],0).
 size([H|T],N):-size(T,N1),N is N1+1.
 
 rotar90(L,R):-transpose(L,R1),reverse(R1,R).
+
+comparar(M1,M2,0):-M1 == M2.
+comparar(M1,M2,G):-rotar90(M1,R),comparar(R,M2,G1),G is G1+90,G<360.
