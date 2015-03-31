@@ -11,3 +11,5 @@ perros(pastor_aleman, [juli, esteban, pancho]).
 perros(san_bernardo, [master, rigan, mujamad]).
 perros(french_poodle, [figaro, piojo, ramiro]).
 
+size([],0).
+size([H|T],N):-size(T,N1),N is N1+1.
