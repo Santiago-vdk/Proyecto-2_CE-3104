@@ -48,23 +48,37 @@ cambiarValorPorOenPos(R,C,Mat,Upd) :-
     nth0(R, Upd,P,RestRows). %Vuelva a montar la matriz.
 
 
-
-
 indexOf([Element|_], Element, 0):- !.
 indexOf([_|Tail], Element, Index):-
   indexOf(Tail, Element, Index1),
   !,
   Index is Index1+1.
 
+primeraAparicionX(i,j,[H|T],F):-
+	size(M,W),
+	i < W,
+	indexOf([H|T],x,T),
+	F is T.
 
-array_cell(Xs,R,C,E) :-
-	nth0(R,Xs,Rs),
-	nth0(C,Rs,E).
+
+test1 :-
+    L = [[1,2,3],
+	 [4,5,6],
+	 [7,8,9]],
+    nth0(I,L,Loquellevo,Loquesobra),
+    writeln(I),
+    writeln(Loquellevo),
+    indexOf(Loquellevo,2,P), %Busca el valor y asigna a P la posicion de fila
+    writeln(P),
+    writeln(Loquesobra).
+    %nth0(J,Loquellevo,
 
 test :-
     L = [[a,b,c,d],
          [e,r,t,y],
          [u,i,x,t]],
+
+
     valorEnPos(2,2,L,K), %Reviso que valor hay en esa posicion
     writeln(K),
     cambiarValorPorOenPos(2,2,L,X), %F tiene el valor en esa posicion, cambio el valor y devuelvo la matriz X
