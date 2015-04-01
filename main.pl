@@ -54,12 +54,17 @@ indexOf([_|Tail], Element, Index):-
   !,
   Index is Index1+1.
 
-primeraAparicionX(i,j,[H|T],F):-
-	size(M,W),
-	i < W,
-	indexOf([H|T],x,T),
-	F is T.
+primeraAparicionX(I,J,M,F) :-
+	M \= [].
 
+primeraAparicionX(I,J,[H|T],F):-
+	size(M,W),
+	I < W,
+	indexOf(H,x,F).
+
+primeraAparicionX(I,J,[H|T],F):-
+	primeraAparacion(I2,J,T,F),
+	I is I2 + 1.
 
 test1 :-
     L = [[1,2,3],
