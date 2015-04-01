@@ -54,13 +54,33 @@ posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-size(Pieza,Tam),I2 is Tam.
 
 posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-valorEnPos(I1,J1,Matriz,V1),
 	valorEnPos(I1,J1,Pieza,V2),V2==x,V1==x,mover(Pieza,I2,J2,NuevoI2,NuevoJ2),
-	A is I1+NuevoI2-I2,B is J1+NuevoJ2-J2,writeln(A+B+V1+V2),
+	A is I1+NuevoI2-I2,B is J1+NuevoJ2-J2,
 	posicionarPieza(Matriz,A,B,Pieza,NuevoI2,NuevoJ2).
 
 posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-valorEnPos(I1,J1,Matriz,V1),
 	valorEnPos(I1,J1,Pieza,V2),V2==o,mover(Pieza,I2,J2,NuevoI2,NuevoJ2),
-	A is I1+NuevoI2-I2,B is J1+NuevoJ2-J2,writeln(A+B+V1+V2),
+	A is I1+NuevoI2-I2,B is J1+NuevoJ2-J2,
 	posicionarPieza(Matriz,A,B,Pieza,NuevoI2,NuevoJ2).
+
+
+
+
+%pyrPieza(Matriz,Pieza,Grados,Contador).
+pyrPieza(M,P,0,N):-valorEnPos(I1,J1,M,x),valorEnPos(I2,J2,P,x),
+	posicionarPieza(M,I1,J1,P,I2,J2).
+pyrPieza(M,P,G,N):-N<4,rotar(P,P1),pyrPieza(M,P1,G1,N+1),G is G1+90.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
