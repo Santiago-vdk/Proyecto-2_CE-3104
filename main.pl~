@@ -47,14 +47,29 @@ cambiarValorPorOenPos(R,C,Mat,Upd) :-
     replace(OldRow,C,o,P), %Cambia el valor en esa columna y le asigna a P la nueva lista.
     nth0(R, Upd,P,RestRows). %Vuelva a montar la matriz.
 
+primeraAparicionDeValorEstaEnPos(R,C,Mat,Upd) :-
+	nth0(R,Mat,OldRow,RestRows),
+
+
+
+indexOf([Element|_], Element, 0):- !.
+indexOf([_|Tail], Element, Index):-
+  indexOf(Tail, Element, Index1),
+  !,
+  Index is Index1+1.
+
+
+array_cell(Xs,R,C,E) :-
+	nth0(R,Xs,Rs),
+	nth0(C,Rs,E).
 
 test :-
     L = [[a,b,c,d],
          [e,r,t,y],
          [u,i,x,t]],
-    valorEnPos(2,2,L,K),
+    valorEnPos(2,2,L,K), %Reviso que valor hay en esa posicion
     writeln(K),
-    cambiarValorPorOenPos(2,2,L,X), %F tiene el valor en esa posicion, primeras
+    cambiarValorPorOenPos(2,2,L,X), %F tiene el valor en esa posicion, cambio el valor y devuelvo la matriz X
     writeln(X).
 
 

@@ -48,6 +48,19 @@ cambiarValorPorOenPos(R,C,Mat,Upd) :-
     nth0(R, Upd,P,RestRows). %Vuelva a montar la matriz.
 
 
+
+
+indexOf([Element|_], Element, 0):- !.
+indexOf([_|Tail], Element, Index):-
+  indexOf(Tail, Element, Index1),
+  !,
+  Index is Index1+1.
+
+
+array_cell(Xs,R,C,E) :-
+	nth0(R,Xs,Rs),
+	nth0(C,Rs,E).
+
 test :-
     L = [[a,b,c,d],
          [e,r,t,y],
