@@ -59,7 +59,7 @@ primeraAparicionX(I,J,M,F) :-
 
 primeraAparicionX(I,J,[H|T],F):-
 	size(M,W),
-	i < W,
+	I < W,
 	indexOf(H,x,F).
 
 primeraAparicionX(I,J,[H|T],F):-
