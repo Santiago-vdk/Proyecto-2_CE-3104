@@ -53,7 +53,7 @@ indexOf([Element|_], Element, 0):-
 	!.
 
 indexOf([_|Tail], Element, Index):-
-	writeln(n.n),
+	writeln(nn),
 	indexOf(Tail, Element, Index1),
 	!,
 	Index is Index1+1.
@@ -61,11 +61,12 @@ indexOf([_|Tail], Element, Index):-
 
 
 primeraAparicionX(I,J,[H|T],F):-
+
+	M \= [],
+	F is F1,
 	writeln(H),
 	writeln(I),
 	writeln(J),
-	M \= [],
-	F is F1,
 	indexOf(H,x,F1).
 
 primeraAparicionX(I,J,[H|T],F):-

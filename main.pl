@@ -61,11 +61,14 @@ indexOf([_|Tail], Element, Index):-
 
 
 primeraAparicionX(I,J,[H|T],F):-
+
+	M \= [],
 	writeln(H),
 	writeln(I),
 	writeln(J),
-	M \= [],
+
 	F is F1,
+
 	indexOf(H,x,F1).
 
 primeraAparicionX(I,J,[H|T],F):-
