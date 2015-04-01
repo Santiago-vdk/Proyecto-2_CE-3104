@@ -36,7 +36,7 @@ test :-
     L = [[a,b,c,d],
          [e,r,t,y],
          [u,i,o,t]],
-    valorEnPos(5,5,L,X,F), %F tiene el valor en esa posicion
+    valorEnPos(5,5,L,X,F), %F tiene el valor en esa posicion, primeras
     writeln(F).
 
 
