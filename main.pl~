@@ -61,9 +61,9 @@ primeraAparicionX(I,J,[H|T],F):-
 	H \= [],
 %	writeln(H),
 %	writeln(I),
-	writeln(J),
-	J = J + 1,
+	writeln(I),
 	indexOf(H,x,F1),
+%	C is I,
 	F is F1.
 %	writeln(yey).
 

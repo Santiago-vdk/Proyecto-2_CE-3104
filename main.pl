@@ -57,18 +57,19 @@ indexOf([_|Tail], Element, Index):-
 
 
 
-primeraAparicionX(I,J,[H|T],F):-
+primeraAparicionX(I,J,[H|T],F,C):-
 	H \= [],
 %	writeln(H),
 %	writeln(I),
-	writeln(J),
+	writeln(I),
 	indexOf(H,x,F1),
+	C is I,
 	F is F1.
 %	writeln(yey).
 
-primeraAparicionX(I,J,[H|T],F):-
+primeraAparicionX(I,J,[H|T],F,C):-
 	I2 is I + 1,
-	primeraAparicionX(I2,J,T,F).
+	primeraAparicionX(I2,J,T,F,C).
 
 
 test1 :-
