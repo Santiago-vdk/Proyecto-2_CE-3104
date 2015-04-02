@@ -48,12 +48,9 @@ cambiarValorPorOenPos(R,C,Mat,Upd) :-
     nth0(R, Upd,P,RestRows). %Vuelva a montar la matriz.
 
 
-indexOf([Element|_], Element, 0):-
-	writeln(nn),
-	!.
+indexOf([Element|_], Element, 0):-!.
 
 indexOf([_|Tail], Element, Index):-
-	writeln(nn),
 	indexOf(Tail, Element, Index1),
 	!,
 	Index is Index1+1.
@@ -61,13 +58,14 @@ indexOf([_|Tail], Element, Index):-
 
 
 primeraAparicionX(I,J,[H|T],F):-
-
-	M \= [],
-	F is F1,
-	writeln(H),
-	writeln(I),
+	H \= [],
+%	writeln(H),
+%	writeln(I),
 	writeln(J),
-	indexOf(H,x,F1).
+	J = J + 1,
+	indexOf(H,x,F1),
+	F is F1.
+%	writeln(yey).
 
 primeraAparicionX(I,J,[H|T],F):-
 	I2 is I + 1,
