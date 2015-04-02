@@ -59,13 +59,9 @@ indexOf([_|Tail], Element, Index):-
 
 primeraAparicionX(I,J,[H|T],F,C):-
 	H \= [],
-%	writeln(H),
-%	writeln(I),
-	writeln(I),
 	indexOf(H,x,F1),
-	C is I,
-	F is F1.
-%	writeln(yey).
+	C is I, %Atrapo el valor por el numero de iteraciones
+	F is F1. %Atrapo el valor de F con indeOf
 
 primeraAparicionX(I,J,[H|T],F,C):-
 	I2 is I + 1,
