@@ -57,19 +57,15 @@ indexOf([_|Tail], Element, Index):-
 
 
 
-primeraAparicionX(I,J,[H|T],F,C):-
+primeraAparicionX(I,J,[H|T],C,F):-
 	H \= [],
-%	writeln(H),
-%	writeln(I),
-	writeln(I),
 	indexOf(H,x,F1),
-	C is I,
-	F is F1.
-%	writeln(yey).
+	C is I, %Atrapo el valor por el numero de iteraciones
+	F is F1. %Atrapo el valor de F con indeOf
 
-primeraAparicionX(I,J,[H|T],F,C):-
+primeraAparicionX(I,J,[H|T],C,F):-
 	I2 is I + 1,
-	primeraAparicionX(I2,J,T,F,C).
+	primeraAparicionX(I2,J,T,C,F).
 
 
 test1 :-
@@ -102,29 +98,38 @@ test :-
 
 %mover(Pieza,I,J,NuevoI,NuevoJ).
 mover([H|T],I,J,I2,0):-size(H,Tam),J is Tam-1,I2 is I+1.
-mover(Pieza,I,J,I,J2):-J2 is J+1.
+mover([H|T],I,J,I,J2):-size(H,Tam),J2 is J+1,J2<Tam.
 
 
 %posicionarPieza(Matriz,I1,J1,Pieza,I2,J2).
-posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-size(Pieza,Tam),I2 is Tam.
+posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-
+	size(Pieza,Tam),
+	I2 is Tam.
 
 posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-
+	writeln(entrandoX+I1+J1+I2+J2),
 	valorEnPos(I1,J1,Matriz,V1),
-	valorEnPos(I1,J1,Pieza,V2),
+	valorEnPos(I2,J2,Pieza,V2),
+	writeln(V1+V2),
 	V2==x,
 	V1==x,
 	mover(Pieza,I2,J2,NuevoI2,NuevoJ2),
 	A is I1+NuevoI2-I2,
 	B is J1+NuevoJ2-J2,
+	writeln(A+B+NuevoI2+NuevoJ2),
 	posicionarPieza(Matriz,A,B,Pieza,NuevoI2,NuevoJ2).
 
 posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-
+	writeln(entrandoO+I1+J1+I2+J2),
 	valorEnPos(I1,J1,Matriz,V1),
-	valorEnPos(I1,J1,Pieza,V2),
+	valorEnPos(I2,J2,Pieza,V2),
+	writeln(V1+V2),
 	V2==o,
+
 	mover(Pieza,I2,J2,NuevoI2,NuevoJ2),
 	A is I1+NuevoI2-I2,
 	B is J1+NuevoJ2-J2,
+	writeln(A+B+NuevoI2+NuevoJ2),
 	posicionarPieza(Matriz,A,B,Pieza,NuevoI2,NuevoJ2).
 
 
@@ -132,15 +137,20 @@ posicionarPieza(Matriz,I1,J1,Pieza,I2,J2):-
 
 %pyrPieza(Matriz,Pieza,Grados,Contador).
 pyrPieza(M,P,0,N):-
-	valorEnPos(I1,J1,M,x),
-	valorEnPos(I2,J2,P,x),
+	primeraAparicionX(0,0,M,I1,J1),
+	primeraAparicionX(0,0,P,I2,J2),
+	writeln(I1+J1+I2+J2),
 	posicionarPieza(M,I1,J1,P,I2,J2).
 
 pyrPieza(M,P,G,N):-
+	writeln(entre),
 	N<4,
-	rotar(P,P1),
+	rotar90(P,P1),
+	writeln(P1+1),
 	pyrPieza(M,P1,G1,N+1),
 	G is G1+90.
+
+
 
 
 
