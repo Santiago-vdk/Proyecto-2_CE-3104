@@ -171,7 +171,7 @@ pyrPiezas(M,[[Nom,Pieza|T]|T2],Temp,Sol):-
 %figuraAux(Matriz,Piezas,Cont,Sol).
 figuraAux(M,P,C,Sol):- pyrPiezas(M,P,[],Sol).
 figuraAux(M,P,C,Sol):- size(P,Tam),C<Tam,enviarAlFinal(P,P2),
-	figura(M,P2,C+1,Sol).
+	figuraAux(M,P2,C+1,Sol).
 
 
 
