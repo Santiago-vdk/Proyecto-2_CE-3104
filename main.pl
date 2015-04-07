@@ -124,7 +124,7 @@ posicionarPieza(Matriz,I1,J1,Pieza,I2,J2,Mat2):-
 	A > -1,
 	B is J1+NuevoJ2-J2,
 	B > -1,
-	cambiarValorPorOenPos(I1,J2,Matriz,M2),
+	cambiarValorPorOenPos(I1,J1,Matriz,M2),
 	posicionarPieza(M2,A,B,Pieza,NuevoI2,NuevoJ2,Mat2).
 
 posicionarPieza(Matriz,I1,J1,Pieza,I2,J2,Mat2):-
@@ -142,32 +142,40 @@ posicionarPieza(Matriz,I1,J1,Pieza,I2,J2,Mat2):-
 
 
 %pyrPieza(Matriz,Pieza,Grados,Contador).
-pyrPieza(M,P,0,N,M2):-
+pyrPieza(M,P,0,N,M2,I1,J1):-
 	primApX(0,0,M,I1,J1),
 	primApX(0,0,P,I2,J2),
 	posicionarPieza(M,I1,J1,P,I2,J2,M2).
 
-pyrPieza(M,P,G,N,M2):-
-	N<4,
+pyrPieza(M,P,G,N,M2,X,Y):-
+	N<3,
 	rotar90(P,P1),
-	pyrPieza(M,P1,G1,N+1,M2),
+	pyrPieza(M,P1,G1,N+1,M2,X,Y),
 	G is G1+90.
+
+
+enviarAlFinal([H|T],M2):-reverse(T,T2),reverse([H|T2],M2).
 
 
 esNula([]).
 esNula([H|T]):- H==[],esNula(T).
-esNula([[H|T1]|T2]):- H==o,esNula(T1|T2).
+esNula([[H|T1]|T2]):- H==o,esNula([T1|T2]).
 
 
 %pyrPiezas(Matriz,Piezas,Temp,Sol).
-pyrPiezas(M,[],Temp,Temp2):-esNula(M2),reverse(Temp,Temp2).
+pyrPiezas(M,[],Temp,Temp2):-esNula(M),reverse(Temp,Temp2).
 pyrPiezas(M,[[Nom,Pieza|T]|T2],Temp,Sol):-
-	pyrPieza(M,Pieza,G,0,M2),
-	writeln(M2),
-	pyrPiezas(M2,T2,[[Nom,G]|Temp],Sol).
+	pyrPieza(M,Pieza,G,0,M2,X,Y),
+	pyrPiezas(M2,T2,[[Nom,G,X,Y]|Temp],Sol).
+
+%figuraAux(Matriz,Piezas,Cont,Sol).
+figuraAux(M,P,C,Sol):- pyrPiezas(M,P,[],Sol).
+figuraAux(M,P,C,Sol):- size(P,Tam),C<Tam,enviarAlFinal(P,P2),
+	figuraAux(M,P2,C+1,Sol).
 
 
 
+figura(M,P,S):-figuraAux(M,P,0,S).
 
 
 
